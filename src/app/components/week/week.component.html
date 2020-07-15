@@ -1,0 +1,13 @@
+<div id="week" class="row ">
+  <div class="col-lg-3 mt-3" *ngFor="let day of weather.daily">
+    <div class="card">
+      <div class="card-body">
+        <p class="text-center">{{ timestampToDate(day.dt, 'DD/MM') }}</p>
+        <p class="text-center">{{ timestampToDate(day.dt, 'ddd') }}</p>
+        <img src="{{ '../../../assets/' + day.weather[0].icon + '.svg' }}" alt="ícone do clima" class="d-block mx-auto my-2" width="55">
+        <p class="text-center">{{ math.round(day.temp.max) }}ºC &nbsp; <span class="gray-text">{{ math.round(day.temp.min) }}ºC</span></p>
+        <p class="text-center">{{ day.temp.max | fahrenheitConverter }}ºF &nbsp; <span class="gray-text">{{ day.temp.min | fahrenheitConverter }}ºF</span></p>
+      </div>
+    </div>
+  </div>
+</div>

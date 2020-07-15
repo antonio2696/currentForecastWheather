@@ -1,0 +1,54 @@
+<div id="main" class="row mx-0" *ngIf="weather">
+  <div id="locality-search" class="col-lg-4 p-4 text-center">
+    <div class="d-flex justify-content-between align-items-center">
+      <form [formGroup]="searchForm" (submit)="loadAddress()" class="d-flex justify-content-between align-items-center flex-grow-1">
+        <input formControlName="address" type="text" class="flex-grow-1" placeholder="Procure por lugares...">
+
+        <button type="submit" class="btn btn-search ml-2">
+          <img src="../../../assets/search.svg" alt="buscar endereço" width="100%">
+        </button>
+      </form>
+
+      <button id="current-location" class="ml-2" (click)="setCurrentLocation()">
+        <img src="../../../assets/target.svg" alt="localização atual" height="30">
+      </button>
+    </div>
+
+    <div class="text-center">
+      <img class="img-fluid mt-4" src="{{ '../../../assets/' + weather.current.weather[0].icon + '.svg' }}"
+        alt="ícone do clima">
+    </div>
+
+    <p class="text-center my-2">{{ cityName }}</p>
+
+    <p style="font-size: 1.3rem;">
+      {{ capitalizeFirstLetter(weather.current.weather[0].description) }}
+    </p>
+    <p id="temp">{{ math.round(weather.current.temp) }}ºC</p>
+    <p style="font-size: 2rem;" class="gray-text font-weight-normal">{{ weather.current.temp | fahrenheitConverter }}ºF
+    </p>
+    <p id="date">{{ currentDay }}, <span class="gray-text">{{ currentHour }}</span></p>
+  </div>
+
+  <div id="weather-info" class="col-lg-8 p-4">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-day-tab" data-toggle="pill" href="#pills-day" role="tab"
+          aria-controls="pills-day" aria-selected="true">Dia</a>
+      </li>
+      <li class="nav-item" role="presentation" *ngIf="weather.daily">
+        <a class="nav-link" id="pills-week-tab" data-toggle="pill" href="#pills-week" role="tab"
+          aria-controls="pills-week" aria-selected="false">Semanal</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-day" role="tabpanel" aria-labelledby="pills-day-tab">
+        <app-day [weather]="weather" (dateChanged)="dateChanged($event)"></app-day>
+        <app-map [location]="location" [updateMap]="updateMap"></app-map>
+      </div>
+      <div class="tab-pane fade" id="pills-week" role="tabpanel" aria-labelledby="pills-week-tab">
+        <app-week [weather]="weather"></app-week>
+      </div>
+    </div>
+  </div>
+</div>

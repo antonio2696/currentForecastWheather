@@ -1,0 +1,103 @@
+<div id="today" class="p-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <label for="date">Selecione uma data</label>
+      <input type="date" id="date" (change)="changeDate($event.target.value)" [max]="dateMax" [min]="dateMin" [value]="today">
+    </div>
+  </div>
+
+  <div id="day-info" class="mt-4">
+    <h1>De hora em hora</h1>
+
+    <div id="by-hour" class="row mt-4 flex-nowrap overflow-auto pb-3">
+      <div class="col-lg-3" *ngFor="let hour of weather.hourly">
+        <div class="card">
+          <div class="card-body">
+            <p class="text-center">{{ timestampToDate(hour.dt, 'LT') }}</p>
+            <img src="{{ '../../../assets/' + hour.weather[0].icon + '.svg' }}" alt="ícone do clima"
+              class="d-block mx-auto my-2" width="55">
+            <p class="text-center">{{ math.round(hour.temp) }}ºC &nbsp; <span
+                class="gray-text">{{ hour.temp | fahrenheitConverter }}ºF</span></p>
+            <p><img src="../../../assets/water.svg" alt="umidade" width="20"> {{ hour.humidity }}%</p>
+            <p><img src="../../../assets/wind.svg" alt="velocidade do vento" width="20">
+              {{ (hour.wind_speed * 3.6).toFixed(1) }} km/h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="general-info mt-4">
+    <h1>Detalhes do dia</h1>
+    <div class="row">
+      <div class="col-lg-6 mt-3">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="row align-items-center">
+              <div class="col-lg-3 text-center">
+                <img src="../../../assets/sunset.svg" alt="pôr do sol" width="40">
+              </div>
+
+              <div class="col-lg-9">
+                <p><span class="font-weight-normal">Nascer do sol:</span>
+                  {{ timestampToDate(weather.current.sunrise, 'LT') }}</p>
+                <p><span class="font-weight-normal">Pôr do sol:</span> {{ timestampToDate(weather.current.sunset, 'LT') }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-3">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="row align-items-center">
+              <div class="col-lg-3 text-center">
+                <img src="../../../assets/uv.svg" alt="índice uv" width="40">
+              </div>
+
+              <div class="col-lg-9">
+                <p>Índice UV</p>
+                <p style="font-size: 2rem">{{ weather.current.uvi }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-3">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="row align-items-center">
+              <div class="col-lg-3 text-center">
+                <img src="../../../assets/pressure.svg" alt="pressão" width="40">
+              </div>
+
+              <div class="col-lg-9">
+                <p>Pressão</p>
+                <p style="font-size: 2rem">{{ weather.current.pressure }} hPa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-3">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <div class="row align-items-center">
+              <div class="col-lg-3 text-center">
+                <img src="../../../assets/wind.svg" alt="pôr do sol" width="40">
+              </div>
+
+              <div class="col-lg-9">
+                <p>Vento</p>
+                <p style="font-size: 2rem">{{ (weather.current.wind_speed * 3.6).toFixed(1) }} km/h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

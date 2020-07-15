@@ -1,0 +1,30 @@
+h1 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* p {
+  text-align: center;
+} */
+
+/* Height- */
+#by-hour::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+#by-hour::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(230, 230, 230); 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+#by-hour::-webkit-scrollbar-thumb {
+  background: rgb(175, 175, 175); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#by-hour::-webkit-scrollbar-thumb:hover {
+  background: #6d6c6c; 
+}
