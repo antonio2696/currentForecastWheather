@@ -27,6 +27,7 @@ export class MainComponent implements OnInit {
   constructor(private weatherService: WeatherService, private addressService: AddressService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    console.log(moment().format('X'))
     this.searchForm = this.formBuilder.group({
       address: ['']
     });

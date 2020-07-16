@@ -1,5 +1,5 @@
 <div id="week" class="row ">
-  <div class="col-lg-3 mt-3" *ngFor="let day of weather.daily">
+  <div class="col-6 col-lg-3 mt-3" *ngFor="let day of weather.daily">
     <div class="card">
       <div class="card-body">
         <p class="text-center">{{ timestampToDate(day.dt, 'DD/MM') }}</p>

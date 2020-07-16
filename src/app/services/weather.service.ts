@@ -17,8 +17,4 @@ export class WeatherService {
   getHistoricalWeather(location, timestamp): Observable<any> {
     return this.http.get(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${location.lat}&lon=${location.lng}&dt=${timestamp}&appid=${this.apiKey}&units=metric&lang=pt_br`);
   }
-
-  getWindMap(): Observable<any> {
-    return this.http.get(`https://tile.openweathermap.org/map/wind_new/8/0/0.png?appid=${this.apiKey}`)
-  }
 }
